@@ -146,6 +146,7 @@ hiddenWhere | [`Match Object`](#match-object) | Defines if the section is visibl
 disabled | `boolean` | Defines if the section is disabled.
 disabledWhere | [`Match Object`](#match-object) | Defines if the section is disabled depending on the data loaded by the user *(it is ignored if disabled is true)*.
 customProps | `Object` | An object that is defined by the service and that the third-party can use to configure the behavior of the input.
+options | [`Options Object`](#options-object) | An object that can be passed to **customProps** when the input type is `select`, `multiCheck`, `multiRadio`, `multiText`
 
 > Note: the `hidden` and `disabled` properties are static and can only be changed through a [`Validation`](#validation-object) (executed when the form is submitted) instead `hiddenWhere` and `disabledWhere` are checked each time the user changes any value
 
@@ -173,6 +174,33 @@ label: 'Age'
 customProps:
   minValue: 13
   maxValue: 100
+
+```
+
+#### Input Object Example when input type = 'select'
+```javascript
+{
+  "name": "expiration",
+  "type": "select",
+  "label": "Expiration Time (in hours)",
+  "customProps": {
+    "options": {
+      1: {
+        "primaryText": "24 hs",
+        "disabled": false
+      },
+      2: {
+        "primaryText": "48 hs",
+        "disabled": false
+      },
+      3: {
+        "primaryText": "72 hs",
+        "disabled": true
+      }
+  }
+
+  }
+}
 
 ```
 
@@ -319,6 +347,28 @@ name: 'user.age'
 error: 'You must be of legal age'
 customProps:
     customPropsForInput: 'new value for this custom props'
+
+```
+
+## Options Object
+
+```json
+    options: {
+      [value]: Option
+    }
+  }
+
+```
+
+> Important: The `key` of each `option` object is the `value`
+
+## Option Object
+
+```javascript
+{
+  text: string,
+  disabled: boolean
+}
 
 ```
 
