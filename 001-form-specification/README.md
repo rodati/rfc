@@ -352,9 +352,9 @@ customProps:
 
 ## Options Object
 
-```json
+```javascript
     options: {
-      [value]: Option
+      value: Option
     }
   }
 
